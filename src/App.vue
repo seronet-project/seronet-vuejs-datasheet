@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer
+    <!-- <v-navigation-drawer
       persistent
       :mini-variant="miniVariant"
       :clipped="clipped"
@@ -23,8 +23,8 @@
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
-    </v-navigation-drawer>
-    <v-toolbar
+    </v-navigation-drawer> -->
+    <!-- <v-toolbar
       app
       :clipped-left="clipped"
     >
@@ -43,11 +43,12 @@
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>menu</v-icon>
       </v-btn>
-    </v-toolbar>
+    </v-toolbar> -->
     <v-content>
-      <HelloWorld/>
+      <!-- <HelloWorld/> -->
+      <home-2/>
     </v-content>
-    <v-navigation-drawer
+    <!-- <v-navigation-drawer
       temporary
       :right="right"
       v-model="rightDrawer"
@@ -62,20 +63,22 @@
           <v-list-tile-title>Switch drawer (click me)</v-list-tile-title>
         </v-list-tile>
       </v-list>
-    </v-navigation-drawer>
-    <v-footer :fixed="fixed" app>
+    </v-navigation-drawer> -->
+    <!-- <v-footer :fixed="fixed" app>
       <span>&copy; 2017</span>
-    </v-footer>
+    </v-footer> -->
   </v-app>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld'
+import home2 from './components/home2'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    home2
   },
   data () {
     return {
