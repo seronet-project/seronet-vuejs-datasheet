@@ -158,7 +158,7 @@
     name: 'home-2',
     props: [],
     mounted() {
-        var id1 = "a";
+        var id1 = "rb-1-base";
         // var id2 = "b";
         var query =
         `
