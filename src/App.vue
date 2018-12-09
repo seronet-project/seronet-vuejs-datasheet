@@ -13,7 +13,7 @@ export default {
   },
   data() {
     return {
-      componentId: "http://seronet/example/rb1"
+      componentId: "http://servicerobotik-ulm.de/ComponentsAndSystems#SmartCdlServer"
     }
   }
 }
