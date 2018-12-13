@@ -6,15 +6,13 @@
   </v-list-tile-content>
 </template>
 <script>
-import {match, nth, compose, toUpper} from 'ramda'
+import {match, compose} from 'ramda'
 export default {
   props:['field'],
   computed: {
     linkSuffix() {
       return compose(
-        toUpper,
-        nth(1),
-        match(/\.([a-zA-Z0-9]+)$/)
+        x => match(/\.([a-zA-Z0-9]+)$/)(x)[1] || x
       )(this.field.value)
     }
   }
