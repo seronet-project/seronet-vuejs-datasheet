@@ -31,8 +31,8 @@
               <v-spacer></v-spacer>
             </v-toolbar>
             <v-list two-line>
-              <template v-for="field in section.fields">
-                <div :key="field.name">
+              <template v-for="(field, i) in section.fields">
+                <div :key="field.name + i">
                   <v-list-tile avatar ripple>
 
                     <url-field v-if="field.type == 'URL'" :field="field"/>
@@ -82,7 +82,6 @@ export default  {
   methods: {
     updateLang(langCode) {
       this.lang = langCode
-      console.log(this.lang)
       this.updateSections()
     },
 
@@ -104,7 +103,7 @@ export default  {
           }
         }
       `;
-      const response = await fetch('http://localhost:4000', {
+      const response = await fetch('http://ipe-koi09.fzi.de:4000/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
