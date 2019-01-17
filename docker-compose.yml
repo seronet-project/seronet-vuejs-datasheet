@@ -3,4 +3,3 @@ services:
   svp-graphql-api:
     build: .
     image: seronet-vuejs-datasheet
-
