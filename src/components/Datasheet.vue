@@ -103,7 +103,7 @@ export default  {
           }
         }
       `;
-      const response = await fetch('http://ipe-koi09.fzi.de:4000/', {
+      const response = await fetch('http://' + process.env.VUE_APP_GRAPHQL_HOST, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
