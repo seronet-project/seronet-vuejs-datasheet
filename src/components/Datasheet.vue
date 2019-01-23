@@ -4,6 +4,14 @@
       <v-btn color="success" @click="updateLang(sl.code)">{{sl.name}}</v-btn>
     </div>
     <v-btn color="error" @click="updateSections()">Update</v-btn>
+    <v-flex xs12 sm6 d-flex>
+      <v-select v-model="componentId"
+      @change="updateSections()"
+      :items="grippers"
+      box
+      label="List Grippers"
+      ></v-select>
+    </v-flex>
 
     <!-- Datasheet starts here -->
     <v-flex xs12 sm6 offset-sm3>
@@ -71,6 +79,7 @@ export default  {
   props: ['componentId'],
   data() {
     return {
+      grippers: [],
       sections: [],
       lang:"en",
       supportedLanguages: [
@@ -83,6 +92,7 @@ export default  {
     updateLang(langCode) {
       this.lang = langCode
       this.updateSections()
+      this.listGrippers()
     },
 
     async updateSections() {
@@ -116,10 +126,32 @@ export default  {
       });
       const {data} = await response.json()
       this.sections = data.getDatasheet ? data.getDatasheet.sections : []
+    },
+
+    async listGrippers() {
+      const query = gql`
+        query User($classId: ID!) {
+          getInstances(classId:$classId)
+        }
+      `;
+      const response = await fetch('http://' + process.env.VUE_APP_GRAPHQL_HOST, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          query,
+          variables: { classId: "http://seronet-projekt.de/models/t2#Gripper"},
+        })
+      });
+      const {data} = await response.json()
+      this.grippers = data.getInstances
     }
   },
   mounted() {
     this.updateSections()
+    this.listGrippers()
   }
 }
 </script>
