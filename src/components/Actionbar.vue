@@ -1,7 +1,5 @@
 <template>
   <v-layout>
-  <!-- <v-btn color="error" @click="updateSections()">Update</v-btn> -->
-
   <v-flex xs12 sm6 d-flex>
     <v-autocomplete v-model="localComponentId"
     @change="updateSections()"
