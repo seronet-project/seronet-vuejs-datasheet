@@ -1,12 +1,11 @@
 <template>
   <v-app>
-    <v-text-field solo autofocus full-width v-model="componentId"/>
+    <!-- <v-text-field solo autofocus full-width v-model="componentId"/> -->
 
     <!--Language Buttons  -->
+    
     <Actionbar :componentId="componentId" @update="handleClickInParent"/>
-
     <Datasheet :componentId="componentId" :sections="sections"/>
-
 
   </v-app>
 </template>
@@ -26,8 +25,9 @@ export default {
     }
   },
   methods: {
-    handleClickInParent(sections) {
-      this.sections = sections
+    handleClickInParent(sections, componentId) {
+      this.sections = sections,
+      this.componentId = componentId
   }
   //...
 }

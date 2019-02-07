@@ -1,20 +1,22 @@
 <template>
   <v-layout>
-  <!-- <div v-for="sl in supportedLanguages" :key="sl.code">
-    <v-btn color="success" @click="updateLang(sl.code)">{{sl.name}}</v-btn>
-  </div> -->
-  <v-btn color="error" @click="updateSections()">Update</v-btn>
+  <!-- <v-btn color="error" @click="updateSections()">Update</v-btn> -->
 
   <v-flex xs12 sm6 d-flex>
-    <v-select v-model="componentId"
+    <v-autocomplete v-model="localComponentId"
     @change="updateSections()"
     :items="grippers"
     box
     label="List Grippers"
-    ></v-select>
+    ></v-autocomplete>
   </v-flex>
+
+  <div v-for="sl in supportedLanguages" :key="sl.code">
+    <v-btn color="success" @click="updateLang(sl.code)">{{sl.name}}</v-btn>
+  </div>
 </v-layout>
 </template>
+
 <script>
 import gql from 'graphql-tag'
 
@@ -22,6 +24,7 @@ export default  {
   props: ['componentId'],
   data() {
     return {
+      localComponentId: this.componentId,
       grippers: [],
       sections: [{'name': 'test'}],
       lang:"en",
@@ -64,12 +67,12 @@ export default  {
         },
         body: JSON.stringify({
           query,
-          variables: { componentId: this.componentId, lang: this.lang },
+          variables: { componentId: this.localComponentId, lang: this.lang },
         })
       });
       const {data} = await response.json()
       this.sections = data.getDatasheet ? data.getDatasheet.sections : []
-      this.$emit('update', this.sections);
+      this.$emit('update', this.sections, this.localComponentId);
     },
 
     async listGrippers() {

@@ -64,7 +64,7 @@
   </v-layout>
 </template>
 <script>
-import gql from 'graphql-tag'
+// import gql from 'graphql-tag'
 
 import ImageField from './ImageField'
 import UrlField from './UrlField'
@@ -79,13 +79,8 @@ export default  {
   props: ['componentId', 'sections'],
   data() {
     return {
-      grippers: [],
+      // grippers: [],
       // sections: [],
-      lang:"en",
-      supportedLanguages: [
-        { code: 'en', name: 'English' },
-        { code: 'de', name: 'German' }
-      ]
     }
   },
   // methods: {
