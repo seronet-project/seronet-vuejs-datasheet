@@ -1,7 +1,14 @@
 <template>
 <v-app>
-  <Actionbar :componentId="componentId" @update="handleClickInParent" />
-  <Datasheet :componentId="componentId" :sections="sections" />
+  <Actionbar
+    :componentId="componentId"
+    @update="handleClickInParent"
+    />
+  <Datasheet 
+    color="pink"
+    :componentId="componentId"
+    :sections="sections" 
+    />
 </v-app>
 </template>
 
