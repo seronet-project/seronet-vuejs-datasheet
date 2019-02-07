@@ -1,13 +1,8 @@
 <template>
-  <v-app>
-    <!-- <v-text-field solo autofocus full-width v-model="componentId"/> -->
-
-    <!--Language Buttons  -->
-    
-    <Actionbar :componentId="componentId" @update="handleClickInParent"/>
-    <Datasheet :componentId="componentId" :sections="sections"/>
-
-  </v-app>
+<v-app>
+  <Actionbar :componentId="componentId" @update="handleClickInParent" />
+  <Datasheet :componentId="componentId" :sections="sections" />
+</v-app>
 </template>
 
 <script>
@@ -16,7 +11,8 @@ import Actionbar from './components/Actionbar'
 
 export default {
   components: {
-    Datasheet, Actionbar
+    Datasheet,
+    Actionbar
   },
   data() {
     return {
@@ -27,9 +23,8 @@ export default {
   methods: {
     handleClickInParent(sections, componentId) {
       this.sections = sections,
-      this.componentId = componentId
+        this.componentId = componentId
+    }
   }
-  //...
-}
 }
 </script>
