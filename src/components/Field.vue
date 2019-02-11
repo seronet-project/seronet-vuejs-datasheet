@@ -17,6 +17,6 @@
 <script>
 export default {
   components: {},
-  props: ['name', 'type', 'value']
+  props: ['name', 'type', 'value', 'linkSuffix']
 }
 </script>
