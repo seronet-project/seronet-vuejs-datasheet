@@ -18,7 +18,8 @@ export default {
   },
   data() {
     return {
-      instances: []
+      instances: [],
+      localComponentId: ''
     }
   },
   methods: {
