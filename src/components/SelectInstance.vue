@@ -13,13 +13,11 @@ export default {
   props: ['classId'],
   watch: {
     classId() {
-      localComponentId: this.classId
       this.listInstances()
     }
   },
   data() {
     return {
-      localComponentId: '',
       instances: []
     }
   },
