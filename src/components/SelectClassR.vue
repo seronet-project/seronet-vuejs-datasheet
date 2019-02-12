@@ -39,9 +39,7 @@ export default {
           },
         })
       });
-      const {
-        data
-      } = await response.json()
+      const {data} = await response.json()
       let array = []
       for (var value in data.getSubclassesR[0].subclasses) {
         array[value] = data.getSubclassesR[0].subclasses[value]['classId'];
