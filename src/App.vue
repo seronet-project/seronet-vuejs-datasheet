@@ -1,14 +1,7 @@
 <template>
 <v-app>
-  <Actionbar
-    :componentId="componentId"
-    @update="handleClickInParent"
-    />
-  <Datasheet 
-    color="pink"
-    :componentId="componentId"
-    :sections="sections" 
-    />
+  <Actionbar :componentId="componentId" @update="handleClickInParent" />
+  <Datasheet color="pink" :componentId="componentId" :sections="sections" />
 </v-app>
 </template>
 
@@ -30,7 +23,7 @@ export default {
   methods: {
     handleClickInParent(sections, componentId) {
       this.sections = sections,
-        this.componentId = componentId
+      this.componentId = componentId
     }
   }
 }
