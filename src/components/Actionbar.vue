@@ -1,7 +1,8 @@
 <template>
   <v-layout>
   <v-flex xs12 sm6 d-flex>
-    <SelectClassR :headClass="headClass"  @update="returnSelectedClass"></SelectClassR>
+    <!-- <SelectClassR :headClass="headClass"  @update="returnSelectedClass"></SelectClassR> -->
+    <SelectClassTree @update="returnSelectedClass"/>
     <SelectInstance :classId="classId" @update="returnSelectedInstance"/>
   </v-flex>
 
@@ -33,11 +34,13 @@
 <script>
 import gql from 'graphql-tag'
 import SelectInstance from './SelectInstance'
-import SelectClassR from './SelectClassR'
+// import SelectClassR from './SelectClassR'
+// import SelectClassR2 from './SelectClassR2'
+import SelectClassTree from './SelectClassTree'
 
 export default  {
   components: {
-    SelectInstance, SelectClassR
+    SelectInstance, SelectClassTree
   },
   props: ['componentId'],
   data() {
