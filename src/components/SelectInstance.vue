@@ -13,14 +13,13 @@ export default {
   props: ['classId'],
   watch: {
     classId() {
-      localComponentId: this.classId
       this.listInstances()
     }
   },
   data() {
     return {
-      localComponentId: [],
-      instances: []
+      instances: [],
+      localComponentId: ''
     }
   },
   methods: {
@@ -43,9 +42,7 @@ export default {
           },
         })
       });
-      const {
-        data
-      } = await response.json()
+      const { data } = await response.json()
       this.instances = data.getInstances
     },
     returnSelectedInstance() {
