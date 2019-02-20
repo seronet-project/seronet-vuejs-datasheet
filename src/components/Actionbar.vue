@@ -1,8 +1,7 @@
 <template>
   <v-layout>
   <v-flex xs12 sm6 d-flex>
-    <!-- <SelectClassR :headClass="headClass"  @update="returnSelectedClass"></SelectClassR> -->
-    <SelectClassTree @update="returnSelectedClass"/>
+    <SelectClassTree :headClass="headClass" @update="returnSelectedClass"/>
     <SelectInstance :classId="classId" @update="returnSelectedInstance"/>
   </v-flex>
 
@@ -13,29 +12,9 @@
 </v-layout>
 </template>
 
-<!-- <template>
-  <div class="tree-menu">
-    <div>{{ label }}</div>
-    <tree-menu
-      v-for="node in nodes"
-      :nodes="node.nodes"
-      :label="node.label"
-    >
-    </tree-menu>
-  </div>
-</template>
-<script>
-  export default {
-    props: [ 'label', 'nodes' ],
-    name: 'tree-menu'
-  }
-</script> -->
-
 <script>
 import gql from 'graphql-tag'
 import SelectInstance from './SelectInstance'
-// import SelectClassR from './SelectClassR'
-// import SelectClassR2 from './SelectClassR2'
 import SelectClassTree from './SelectClassTree'
 
 export default  {
@@ -47,7 +26,7 @@ export default  {
     return {
       localComponentId: this.componentId,
       classId: "http://seronet-projekt.de/models/t2#Gripper",
-      headClass: "http://seronet-projekt.de/models/t1#HardwareComponent",
+      headClass: "http://seronet-projekt.de/models/t1#Component",
       grippers: [],
       sections: [{'name': 'test'}],
       lang:"en",

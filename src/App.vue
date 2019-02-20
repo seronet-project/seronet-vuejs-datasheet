@@ -1,10 +1,10 @@
 <template>
 <v-app>
-  <Actionbar :componentId="componentId" @update="handleClickInParent" />
+  <Actionbar :componentId="componentId" @update="returnSelectedClass" />
 
   <!--  Actionbar: returns List of Components-->
 
-  <v-pagination v-model="page" :length="paginationLength"></v-pagination>
+  <!-- <v-pagination v-model="page" :length="paginationLength"></v-pagination> -->
 
   <!-- <div v-for="field in array.slice(page*5,(page*5)+5)" :key="field.name"> -->
     <!-- {{page*5}}
@@ -36,7 +36,7 @@ export default {
     }
   },
   methods: {
-    handleClickInParent(sections, componentId) {
+    returnSelectedClass(sections, componentId) {
       this.sections = sections,
         this.componentId = componentId
     }

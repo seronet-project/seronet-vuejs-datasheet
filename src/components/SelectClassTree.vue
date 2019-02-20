@@ -1,19 +1,24 @@
 <template>
 <v-layout>
   <v-flex xs12 sm6 d-flex>
-    <v-autocomplete v-model="localHeadClass" :items="this.subclasses" item-text="classId" box label="List Class"/>
+    <SelectClassNode :classId="localHeadClass" :subclasses="this.subclasses" @update="returnSelectedClass"/></SelectClassNode>
   </v-flex>
 </v-layout>
 </template>
 
 <script>
 import gql from 'graphql-tag'
+import SelectClassNode from './SelectClassNode'
 
 export default {
   props: ['headClass'],
+  components: {
+    SelectClassNode
+  },
   data() {
     return {
       subclasses: [],
+      subclass: [],
       localHeadClass: this.headClass
     }
   },
@@ -39,16 +44,12 @@ export default {
           },
         })
       });
+
       const { data } = await response.json()
       this.subclasses = data.getSubclassesR[0].subclasses
-      // for (var value in data.getSubclassesR[0].subclasses) {
-      //   array[value] = data.getSubclassesR[0].subclasses[value]['classId'];
-      // }
-
-      console.log(this.subclasses);
     },
-    returnSelectedClass() {
-      this.$emit('update', this.localHeadClass);
+    returnSelectedClass(classId) {
+      this.$emit('update',classId);
     }
   },
   mounted() {
