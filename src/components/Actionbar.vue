@@ -1,7 +1,7 @@
 <template>
   <v-layout>
-  <v-flex xs12 sm6 d-flex>
-    <SelectClassTree :headClass="headClass" @update="returnSelectedClass"/>
+  <v-flex xs12 sm6 d-flex row>
+    <SelectClassTree @update="returnSelectedClass"/>
     <SelectInstance :classId="classId" @update="returnInstances"/>
   </v-flex>
 
@@ -20,13 +20,10 @@ export default  {
   components: {
     SelectInstance, SelectClassTree
   },
-  props: ['componentId'],
   data() {
     return {
       selectedInstances: this.selectedInstances,
       classId: "",
-      headClass: "http://seronet-projekt.de/models/t1#Component",
-      sections: [{'name': 'test'}],
       lang:"en",
       supportedLanguages: [
         { code: 'en', name: 'English' },

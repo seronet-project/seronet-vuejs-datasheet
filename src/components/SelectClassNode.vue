@@ -2,7 +2,7 @@
 <v-layout>
   <v-flex xs12 sm12 d-flex>
     <div v-if="getSubclassesLength()">
-    <v-autocomplete v-model="selectedClass" :items="subclasses" item-text="classId" box label="List Class" return-object v-bind:readonly="readonly" v-on:change="changed()"/>
+    <v-autocomplete v-model="selectedClass" :items="subclasses" item-text="classId" box label="List Class" return-object v-bind:readonly="readonly"/>
       <div v-if="selectedClass.subclasses">
         <node :classId="selectedClass.classId" :subclasses="selectedClass.subclasses" v-bind:readonly="false" @update="returnSelectedClass"/>
       </div>
@@ -36,13 +36,6 @@ export default {
     },
     returnSelectedClass(classId){
       this.$emit('update', classId);
-    },
-    changed(){
-      if (this.selectedClass.subclasses == []) {
-        this.readonly = true
-      } else {
-        this.readonly = false
-      }
     }
   },
   computed: {

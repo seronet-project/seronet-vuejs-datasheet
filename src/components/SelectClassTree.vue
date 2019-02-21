@@ -1,7 +1,7 @@
 <template>
-<v-layout>
-  <v-flex xs12 sm6 d-flex>
-    <SelectClassNode :classId="localHeadClass" :subclasses="this.subclasses" @update="returnSelectedClass"/>
+<v-layout row>
+  <v-flex xs12 sm6>
+    <SelectClassNode :classId="classId" :subclasses="this.subclasses" @update="returnSelectedClass"/>
   </v-flex>
 </v-layout>
 </template>
@@ -19,7 +19,7 @@ export default {
     return {
       subclasses: [],
       subclass: [],
-      localHeadClass: this.headClass
+      classId: "http://seronet-projekt.de/models/t1#Component"
     }
   },
   methods: {
@@ -40,7 +40,7 @@ export default {
         body: JSON.stringify({
           query,
           variables: {
-            classId: this.headClass
+            classId: this.classId
           },
         })
       });

@@ -1,8 +1,8 @@
 <template>
 <v-layout>
   <v-flex xs12 sm6 d-flex>
-    <v-autocomplete v-model="selectedInstance" @change="returnInstances()" :items="instances" box label="List Instances">{{selectedInstance}}</v-autocomplete>
-    <v-btn color="error" @click="removeInstance()">Remove Instance</v-btn>
+    <v-autocomplete v-model="selectedInstance" @change="returnInstances()" :items="instances" box label="List Instances"/>
+    <v-btn color="error" @click="removeInstance()">Remove</v-btn>
   </v-flex>
 </v-layout>
 </template>

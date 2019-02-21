@@ -2,17 +2,14 @@
 <v-app>
   <Actionbar @update="returnInstances" />
 
-  <!--  Actionbar: returns List of Components-->
-
-  <!-- <v-pagination v-model="page" :length="paginationLength"></v-pagination> -->
-
-  <!-- <div v-for="Instance in instances.slice(page*5,(page*5)+5)"> -->
-  <div v-for="Instance in instances.slice(0, 2)">
-    {{Instance}}
-    <!-- {{page*5}}
-    {{(page*5)+ 5}} -->
-    <Datasheet color="pink" :componentId="Instance" />
+<div class="text-xs-top">
+<div class="text-xs-center">
+  <v-pagination v-model="page" :length="paginationLength" :total-visible="7"/>
+</div>
+  <div v-for="(instance, index) in instances.slice(((page-1)*3), ((page-1)*3)+3)">
+    <Datasheet :color="colors[index]" :componentId="instance" />
   </div>
+</div>
 
 </v-app>
 </template>
@@ -30,18 +27,20 @@ export default {
     return {
       sections: [],
       page: 1,
-      array: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-      paginationLength: 0,
-      instances: ["http://servicerobotik-ulm.de/ComponentsAndSystems#SmartCdlServer"]
+      paginationLength: 1,
+      instances: ["http://servicerobotik-ulm.de/ComponentsAndSystems#SmartCdlServer"],
+      colors: ["red", "orange", "green"]
     }
   },
   methods: {
     returnInstances(instances) {
         this.instances = instances
+        this.paginationLength = Math.round(this.instances.length / 5)
+        this.page = 1
     }
   },
   mounted() {
-    this.paginationLength = Math.round(this.array.length / 5)
+    
   }
 }
 </script>
