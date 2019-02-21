@@ -1,7 +1,8 @@
 <template>
 <v-layout>
   <v-flex xs12 sm6 d-flex>
-    <v-autocomplete v-model="localComponentId" @change="returnSelectedInstance()" :items="instances" box label="List Instances"></v-autocomplete>
+    <v-autocomplete v-model="selectedInstance" @change="returnInstances()" :items="instances" box label="List Instances">{{selectedInstance}}</v-autocomplete>
+    <v-btn color="error" @click="removeInstance()">Remove Instance</v-btn>
   </v-flex>
 </v-layout>
 </template>
@@ -19,7 +20,7 @@ export default {
   data() {
     return {
       instances: [],
-      localComponentId: ''
+      selectedInstance: ''
     }
   },
   methods: {
@@ -44,13 +45,23 @@ export default {
       });
       const { data } = await response.json()
       this.instances = data.getInstances
+      this.returnInstances()
     },
-    returnSelectedInstance() {
-      this.$emit('update', this.localComponentId);
+    returnInstances() {
+      let submitArray = []
+      if (this.selectedInstance != "") {
+        submitArray[0] = this.selectedInstance
+      } else {
+        submitArray = this.instances
+      }
+      this.$emit('update',submitArray);
+    },
+    removeInstance(){
+      this.selectedInstance = ""
+      this.returnInstances()
     }
   },
   mounted() {
-    this.listInstances()
   }
 }
 </script>

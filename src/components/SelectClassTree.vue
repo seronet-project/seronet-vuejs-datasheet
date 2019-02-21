@@ -1,7 +1,7 @@
 <template>
 <v-layout>
   <v-flex xs12 sm6 d-flex>
-    <SelectClassNode :classId="localHeadClass" :subclasses="this.subclasses" @update="returnSelectedClass"/></SelectClassNode>
+    <SelectClassNode :classId="localHeadClass" :subclasses="this.subclasses" @update="returnSelectedClass"/>
   </v-flex>
 </v-layout>
 </template>

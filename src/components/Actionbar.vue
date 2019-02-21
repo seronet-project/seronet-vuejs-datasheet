@@ -2,7 +2,7 @@
   <v-layout>
   <v-flex xs12 sm6 d-flex>
     <SelectClassTree :headClass="headClass" @update="returnSelectedClass"/>
-    <SelectInstance :classId="classId" @update="returnSelectedInstance"/>
+    <SelectInstance :classId="classId" @update="returnInstances"/>
   </v-flex>
 
   <div v-for="sl in supportedLanguages" :key="sl.code">
@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import gql from 'graphql-tag'
 import SelectInstance from './SelectInstance'
 import SelectClassTree from './SelectClassTree'
 
@@ -24,10 +23,9 @@ export default  {
   props: ['componentId'],
   data() {
     return {
-      localComponentId: this.componentId,
-      classId: "http://seronet-projekt.de/models/t2#Gripper",
+      selectedInstances: this.selectedInstances,
+      classId: "",
       headClass: "http://seronet-projekt.de/models/t1#Component",
-      grippers: [],
       sections: [{'name': 'test'}],
       lang:"en",
       supportedLanguages: [
@@ -43,51 +41,14 @@ export default  {
       this.listInstances()
     },
 
-    async updateSections() {
-      const query = gql`
-        query User($componentId: ID!, $lang: SupportedLanguage) {
-          getDatasheet(componentId:$componentId lang:$lang) {
-            componentId
-            createdAt
-            sections {
-              name
-              mdicon
-              fields {
-                name
-                value
-                type
-              }
-            }
-          }
-        }
-      `;
-      const response = await fetch('http://' + process.env.VUE_APP_GRAPHQL_HOST, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        body: JSON.stringify({
-          query,
-          variables: { componentId: this.localComponentId, lang: this.lang },
-        })
-      });
-      const {data} = await response.json()
-      this.sections = data.getDatasheet ? data.getDatasheet.sections : []
-      this.$emit('update', this.sections, this.localComponentId);
-    },
-
-    returnSelectedInstance(selectedComponentId){
-      this.localComponentId = selectedComponentId
-      this.updateSections()
+    returnInstances(instances){
+      this.selectedInstances = instances
+      this.$emit('update', this.selectedInstances);
     },
 
     returnSelectedClass(selectedClass){
       this.classId = selectedClass
     }
-  },
-  mounted() {
-    this.updateSections()
   }
 }
 </script>

@@ -1,21 +1,21 @@
 <template>
 <v-app>
-  <Actionbar :componentId="componentId" @update="returnSelectedClass" />
+  <Actionbar @update="returnInstances" />
 
   <!--  Actionbar: returns List of Components-->
 
   <!-- <v-pagination v-model="page" :length="paginationLength"></v-pagination> -->
 
-  <!-- <div v-for="field in array.slice(page*5,(page*5)+5)" :key="field.name"> -->
+  <!-- <div v-for="Instance in instances.slice(page*5,(page*5)+5)"> -->
+  <div v-for="Instance in instances.slice(0, 2)">
+    {{Instance}}
     <!-- {{page*5}}
     {{(page*5)+ 5}} -->
-    <Datasheet color="pink" :componentId="componentId" :sections="sections" />
-  <!-- </div> -->
+    <Datasheet color="pink" :componentId="Instance" />
+  </div>
 
 </v-app>
 </template>
-
-<!-- DATASHEETS -->
 
 <script>
 import Datasheet from './components/Datasheet'
@@ -28,17 +28,16 @@ export default {
   },
   data() {
     return {
-      componentId: "http://servicerobotik-ulm.de/ComponentsAndSystems#SmartCdlServer",
       sections: [],
       page: 1,
       array: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-      paginationLength: 0
+      paginationLength: 0,
+      instances: ["http://servicerobotik-ulm.de/ComponentsAndSystems#SmartCdlServer"]
     }
   },
   methods: {
-    returnSelectedClass(sections, componentId) {
-      this.sections = sections,
-        this.componentId = componentId
+    returnInstances(instances) {
+        this.instances = instances
     }
   },
   mounted() {

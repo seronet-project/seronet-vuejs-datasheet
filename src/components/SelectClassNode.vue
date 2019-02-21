@@ -38,7 +38,6 @@ export default {
       this.$emit('update', classId);
     },
     changed(){
-      // console.log("hi");
       if (this.selectedClass.subclasses == []) {
         this.readonly = true
       } else {
