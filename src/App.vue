@@ -2,7 +2,7 @@
 <v-app>
   <Actionbar @update="returnInstances" />
 
-<div class="text-xs-top">
+<div class="text-xs-bottom">
 <div class="text-xs-center">
   <v-pagination v-model="page" :length="paginationLength" :total-visible="7"/>
 </div>
@@ -28,7 +28,7 @@ export default {
       sections: [],
       page: 1,
       paginationLength: 1,
-      instances: ["http://servicerobotik-ulm.de/ComponentsAndSystems#SmartCdlServer"],
+      instances: [],
       colors: ["red", "orange", "green"]
     }
   },
@@ -38,9 +38,6 @@ export default {
         this.paginationLength = Math.round(this.instances.length / 5)
         this.page = 1
     }
-  },
-  mounted() {
-    
   }
 }
 </script>

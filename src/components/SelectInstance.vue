@@ -60,8 +60,6 @@ export default {
       this.selectedInstance = ""
       this.returnInstances()
     }
-  },
-  mounted() {
   }
 }
 </script>

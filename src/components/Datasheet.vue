@@ -1,5 +1,4 @@
 <template>
-<v-layout>
   <v-flex xs12 sm6 offset-sm3>
     <v-card>
       <v-toolbar :color="this.color" dark>
@@ -14,7 +13,6 @@
       </div>
     </v-card>
   </v-flex>
-</v-layout>
 </template>
 
 <script>

@@ -18,7 +18,6 @@ export default {
   data() {
     return {
       subclasses: [],
-      subclass: [],
       classId: "http://seronet-projekt.de/models/t1#Component"
     }
   },
