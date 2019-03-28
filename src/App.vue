@@ -1,7 +1,16 @@
 <template>
 <v-app>
-  <Actionbar :componentId="componentId" @update="handleClickInParent" />
-  <Datasheet color="pink" :componentId="componentId" :sections="sections" />
+  <Actionbar @update="returnInstances" />
+
+<div class="text-xs-bottom">
+<div class="text-xs-center">
+  <v-pagination v-model="page" :length="paginationLength" :total-visible="7"/>
+</div>
+  <div v-for="(instance, index) in instances.slice(((page-1)*3), ((page-1)*3)+3)">
+    <Datasheet :color="colors[index]" :componentId="instance" />
+  </div>
+</div>
+
 </v-app>
 </template>
 
@@ -16,14 +25,18 @@ export default {
   },
   data() {
     return {
-      componentId: "http://servicerobotik-ulm.de/ComponentsAndSystems#SmartCdlServer",
-      sections: []
+      sections: [],
+      page: 1,
+      paginationLength: 1,
+      instances: [],
+      colors: ["red", "orange", "green"]
     }
   },
   methods: {
-    handleClickInParent(sections, componentId) {
-      this.sections = sections,
-      this.componentId = componentId
+    returnInstances(instances) {
+        this.instances = instances
+        this.paginationLength = Math.round(this.instances.length / 5)
+        this.page = 1
     }
   }
 }

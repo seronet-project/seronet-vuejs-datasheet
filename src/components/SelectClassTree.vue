@@ -1,20 +1,24 @@
 <template>
-<v-layout>
-  <v-flex xs12 sm6 d-flex>
-    <v-autocomplete v-model="localHeadClass" @change="returnSelectedClass()" :items="subclasses" box label="List Class"/>
+<v-layout row>
+  <v-flex xs12 sm6>
+    <SelectClassNode :classId="classId" :subclasses="this.subclasses" @update="returnSelectedClass"/>
   </v-flex>
 </v-layout>
 </template>
 
 <script>
 import gql from 'graphql-tag'
+import SelectClassNode from './SelectClassNode'
 
 export default {
   props: ['headClass'],
+  components: {
+    SelectClassNode
+  },
   data() {
     return {
       subclasses: [],
-      localHeadClass: this.headClass
+      classId: "http://seronet-projekt.de/models/t1#Component"
     }
   },
   methods: {
@@ -22,7 +26,7 @@ export default {
       const query = gql `
         query User($classId: ID!) {
           getSubclassesR(classId:$classId){
-            classId, subclasses{classId}
+            classId, subclasses{classId, subclasses{classId, subclasses{classId, subclasses{classId}}}}
           }
         }
       `;
@@ -35,19 +39,25 @@ export default {
         body: JSON.stringify({
           query,
           variables: {
-            classId: this.headClass
+            classId: this.classId
           },
         })
       });
+<<<<<<< HEAD:src/components/SelectClassTree.vue
+
+      const { data } = await response.json()
+      this.subclasses = data.getSubclassesR[0].subclasses
+=======
       const {data} = await response.json()
       let array = []
       for (var value in data.getSubclassesR[0].subclasses) {
         array[value] = data.getSubclassesR[0].subclasses[value]['classId'];
       }
       this.subclasses = array
+>>>>>>> master:src/components/SelectClassR.vue
     },
-    returnSelectedClass() {
-      this.$emit('update', this.localHeadClass);
+    returnSelectedClass(classId) {
+      this.$emit('update',classId);
     }
   },
   mounted() {
