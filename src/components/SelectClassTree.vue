@@ -43,9 +43,18 @@ export default {
           },
         })
       });
+<<<<<<< HEAD:src/components/SelectClassTree.vue
 
       const { data } = await response.json()
       this.subclasses = data.getSubclassesR[0].subclasses
+=======
+      const {data} = await response.json()
+      let array = []
+      for (var value in data.getSubclassesR[0].subclasses) {
+        array[value] = data.getSubclassesR[0].subclasses[value]['classId'];
+      }
+      this.subclasses = array
+>>>>>>> master:src/components/SelectClassR.vue
     },
     returnSelectedClass(classId) {
       this.$emit('update',classId);
